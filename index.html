@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avishek B.K | Animated Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+            /* Hardware acceleration for smoother animations */
+            transform: translateZ(0);
+        }
+        
+        /* Container with optimized animations */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            opacity: 0;
+            /* Use transform for animations (more performant than top/left) */
+            transform: translateY(20px);
+            /* Will-change hints for browser optimization */
+            will-change: opacity, transform;
+            /* Animation uses translate and opacity (GPU accelerated) */
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Header with simple animation */
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a90e2;
+            /* Simple shadow animation on hover */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            will-change: box-shadow;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-pic:hover {
+            box-shadow: 0 0 25px rgba(74, 144, 226, 0.8);
+            transform: scale(1.05);
+        }
+        
+        .name-container {
+            position: relative;
+            display: inline-block;
+            margin: 1rem 0 0.5rem;
+            overflow: hidden;
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+        
+        .name-animation {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            /* Text shadow for subtle depth */
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            position: relative;
+            padding: 0 15px;
+        }
+        
+        .name-animation span {
+            display: inline-block;
+            position: relative;
+            animation: nameReveal 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .name-animation span:nth-child(1) { animation-delay: 0.1s; }
+        .name-animation span:nth-child(2) { animation-delay: 0.2s; }
+        .name-animation span:nth-child(3) { animation-delay: 0.3s; }
+        .name-animation span:nth-child(4) { animation-delay: 0.4s; }
+        .name-animation span:nth-child(5) { animation-delay: 0.5s; }
+        .name-animation span:nth-child(6) { animation-delay: 0.6s; }
+        .name-animation span:nth-child(7) { animation-delay: 0.7s; }
+        .name-animation span:nth-child(8) { animation-delay: 0.8s; }
+        .name-animation span:nth-child(9) { animation-delay: 0.9s; }
+        
+        @keyframes nameReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) rotate(15deg);
+                text-shadow: 0 0 20px rgba(74, 144, 226, 0.7);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-10px) rotate(-5deg);
+                text-shadow: 0 0 30px rgba(74, 144, 226, 0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(0);
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            }
+        }
+        
+        .name-animation::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(74, 144, 226, 0.3), rgba(42, 245, 152, 0.3));
+            z-index: -1;
+            border-radius: 10px;
+            animation: nameBgPulse 3s infinite alternate;
+        }
+        
+        @keyframes nameBgPulse {
+            0% {
+                background: linear-gradient(45deg, rgba(74, 144, 226, 0.3), rgba(42, 245, 152, 0.3));
+                box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+            }
+            50% {
+                background: linear-gradient(45deg, rgba(42, 245, 152, 0.4), rgba(74, 144, 226, 0.4));
+                box-shadow: 0 0 30px rgba(42, 245, 152, 0.4);
+            }
+            100% {
+                background: linear-gradient(45deg, rgba(74, 144, 226, 0.5), rgba(42, 245, 152, 0.5));
+                box-shadow: 0 0 25px rgba(74, 144, 226, 0.5);
+            }
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin: 1.5rem 0;
+            position: relative;
+            display: inline-block;
+            padding: 0 10px;
+        }
+        
+        .title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4a90e2, #2af598, transparent);
+            animation: titleUnderline 3s infinite linear;
+        }
+        
+        @keyframes titleUnderline {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        /* Content sections with staggered animations */
+        section {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            /* Subtle border animation */
+            border: 1px solid transparent;
+            transition: all 0.4s ease;
+            will-change: border-color, transform, box-shadow;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        section:hover {
+            border-color: #4a90e2;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        section h2 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        section h2 i {
+            font-size: 1.3rem;
+        }
+        
+        section p {
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+        }
+        
+        /* Skills list with minimal animation */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill {
+            background: rgba(74, 144, 226, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            /* Simple scale animation on hover */
+            transition: transform 0.2s ease, background 0.3s ease;
+            will-change: transform;
+            border: 1px solid rgba(74, 144, 226, 0.4);
+        }
+        
+        .skill:hover {
+            transform: scale(1.05);
+            background: rgba(74, 144, 226, 0.35);
+        }
+        
+        /* Footer with contact info */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            color: #f0f0f0;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            will-change: color, transform;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.2);
+        }
+        
+        .social-link:hover {
+            color: #4a90e2;
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(74, 144, 226, 0.3);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2);
+        }
+        
+        /* Staggered animations for sections */
+        section:nth-child(1) {
+            animation: fadeInUp 0.8s 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        section:nth-child(2) {
+            animation: fadeInUp 0.8s 1.0s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        section:nth-child(3) {
+            animation: fadeInUp 0.8s 1.2s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* More Info Button Styling */
+        .more-info-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .more-info-btn {
+            background: linear-gradient(45deg, #4a90e2, #2af598);
+            color: #121212;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .more-info-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #2af598, #4a90e2);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .more-info-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .more-info-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+        }
+        
+        .more-info-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .more-info-btn i {
+            transition: transform 0.4s ease;
+        }
+        
+        .more-info-btn:hover i {
+            transform: rotate(90deg);
+        }
+        
+        /* Additional Info Section */
+        .additional-info {
+            max-height: 0;
+            overflow: hidden;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 12px;
+            margin-top: 1rem;
+            transition: all 0.6s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .additional-info.active {
+            max-height: 1000px;
+            padding: 1.5rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .info-card {
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 8px;
+            padding: 1.2rem;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            border-color: #4a90e2;
+            transform: translateY(-3px);
+            background: rgba(30, 30, 30, 0.7);
+        }
+        
+        .info-card h3 {
+            color: #4a90e2;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .more-info-btn-link {
+            background: linear-gradient(45deg, #4a90e2, #2af598);
+            color: #121212;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-decoration: none;
+        }
+        
+        .more-info-btn::before,
+        .more-info-btn-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #2af598, #4a90e2);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .more-info-btn:hover::before,
+        .more-info-btn-link:hover::before {
+            opacity: 1;
+        }
+        
+        .more-info-btn:hover,
+        .more-info-btn-link:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+        }
+        
+        .more-info-btn:active,
+        .more-info-btn-link:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .more-info-btn i,
+        .more-info-btn-link i {
+            transition: transform 0.4s ease;
+        }
+        
+        .more-info-btn:hover i,
+        .more-info-btn-link:hover i {
+            transform: rotate(90deg);
+        }
+         .example {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.2rem;
+            }
+            
+            .name-animation {
+                font-size: 2.2rem;
+            }
+            
+            .profile-pic {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+            
+            .social-link {
+                font-size: 1.5rem;
+                width: 45px;
+                height: 45px;
+            }
+              .more-info-btn,
+            .more-info-btn-link {
+                padding: 10px 24px;
+                font-size: 1rem;
+            }
+            
+        }
+        
+        @media (max-width: 480px) {
+            .name-animation {
+                font-size: 1.8rem;
+            }
+            
+            .title {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 1.2rem;
+            }
+            
+            .more-info-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* Decorative elements */
+        .decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .circle {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4a90e2, #2af598);
+            top: -100px;
+            right: -100px;
+            filter: blur(40px);
+        }
+        
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: -50px;
+            background: linear-gradient(45deg, #2af598, #4a90e2);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative background elements -->
+    <div class="decoration circle"></div>
+    <div class="decoration circle circle-2"></div>
+    
+    <div class="container">
+        <header>
+            <img src="mypic.jpeg" alt="Avishek B.K" class="profile-pic floating pulse">
+            <div class="name-container">
+                <h1 class="name-animation">
+                    <span>A</span><span>v</span><span>i</span><span>s</span><span>h</span><span>e</span><span>k</span>
+                    <span>B</span><span>.</span><span>K</span>
+                </h1>
+            </div>
+            <div class="title">Web Developer, Coder & Designer</div>
+        </header>
+        
+        <section>
+            <h2><i class="fas fa-user"></i> About Me</h2>
+            <p>Hello! I'm Avi, a passionate web developer with over 5 years of experience creating beautiful, functional websites. I specialize in front-end development but also enjoy working with back-end technologies.</p>
+            <p>When I'm not coding, you can find me hiking, reading sci-fi novels, playing games, or experimenting with new recipes in the kitchen.</p>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-code"></i> Skills</h2>
+            <p>Here are some of the technologies I work with:</p>
+            <div class="skills">
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">React</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">UI/UX Design</span>
+                <span class="skill">C++</span>
+                <span class="skill">Git</span>
+                <span class="skill">Responsive Design</span>
+            </div>
+        </section>
+        
+        <section>
+            <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+            <p>I've worked on various projects ranging from small business websites to complex web applications. My approach focuses on clean code, performance optimization, and creating intuitive user experiences.</p>
+            <p>Currently, I'm working on an open-source tool to help developers visualize complex data structures.</p>
+        </section>
+        
+        
+         <div class="example">
+                        <a href="https://www.facebook.com/avi.bishow.karma.2025" class="more-info-btn-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> More Info 
+                        </a>
+                    </div>
+        
+        <footer>
+            <p>Let's connect and create something amazing together!</p>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@vampireyt1825" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/vampire_abhi_52/" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/avi.bishow.karma.2025" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <p class="copyright">© 2023 Avishek B.K. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const moreInfoBtn = document.getElementById('moreInfoBtn');
+            const additionalInfo = document.getElementById('additionalInfo');
+            const icon = moreInfoBtn.querySelector('i');
+            
+            moreInfoBtn.addEventListener('click', function() {
+                additionalInfo.classList.toggle('active');
+                
+                if (additionalInfo.classList.contains('active')) {
+                    moreInfoBtn.innerHTML = '<i class="fas fa-minus"></i> Less Info';
+                } else {
+                    moreInfoBtn.innerHTML = '<i class="fas fa-plus"></i> More Info';
+                }
+                
+                // Rotate icon animation
+                icon.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    icon.style.transform = '';
+                }, 400);
+            });
+            
+            // Add continuous subtle animation to the name
+            const nameLetters = document.querySelectorAll('.name-animation span');
+            
+            setInterval(() => {
+                nameLetters.forEach((letter, index) => {
+                    setTimeout(() => {
+                        letter.style.animation = 'none';
+                        void letter.offsetWidth; // Trigger reflow
+                        letter.style.animation = 'nameReveal 0.8s forwards';
+                    }, index * 100);
+                });
+            }, 8000);
+        });
+    </script>
+</body>
+</html>
